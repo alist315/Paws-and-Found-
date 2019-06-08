@@ -17,7 +17,6 @@ class App extends Component {
     this.sortPets = this.sortPets.bind(this)
     this.setPets = this.setPets.bind(this)
     this.updateArray = this.updateArray.bind(this)
-    this.handleCreatePet = this.handleCreatePet.bind(this)
     this.handleCheck = this.handleCheck.bind(this)
     this.removeFromArray = this.removeFromArray.bind(this)
   }
@@ -35,11 +34,12 @@ class App extends Component {
     .then( jData => {
       this.updateArray(jData, 'lostPets')
       this.handleView('lost')
+      this.fetchPets()
     })
     .catch ( err => console.log('this is an error', err))
   }
 
-  updateArray(pet,array){
+  updateArray(pet, array){
     this.setState( prevState => ({
       [array]:[...prevState[array],pet]
     }))
@@ -60,7 +60,10 @@ class App extends Component {
       this.removeFromArray(currentArray, arrayIndex)
       if(currentArray === 'lostPets') {
         this.updateArray(jData, 'foundPets')
+      } else {
+        this.updateArray(jData, 'lostPets')
       }
+      this.fetchPets()
     })
     .catch (err => console.log('this is an error', err))
   }
@@ -77,8 +80,9 @@ class App extends Component {
   fetchPets() {
     fetch('http://localhost:3000/pets')
     .then (data => data.json())
-    .then (jdata => {
-      this.sortPets(jdata)
+    .then (jData => {
+      console.log('this is jData', jData)
+      this.sortPets(jData)
     })
   }
 
