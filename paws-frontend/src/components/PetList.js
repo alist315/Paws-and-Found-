@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
+import Pet from './Pet'
+
 class PetList extends Component {
   render() {
     return (
-      <div>
-        this is the PetList component
+      <div className="pet-list">
+        <Pet />
       </div>
     )
   }
