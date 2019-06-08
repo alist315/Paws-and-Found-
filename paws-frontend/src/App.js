@@ -12,6 +12,14 @@ class App extends Component {
         lostPets: []
       }
       this.handleCreatePet = this.handleCreatePet.bind(this)
+      this.handleView = this.handleView.bind(this)
+      this.fetchPets = this.fetchPets.bind(this)
+      this.sortPets = this.sortPets.bind(this)
+      this.setPets = this.setPets.bind(this)
+      this.updateArray = this.updateArray.bind(this)
+      this.handleCreatePet = this.handleCreatePet.bind(this)
+      this.handleCheck = this.handleCheck.bind(this)
+      this.removeFromArray = this.removeFromArray.bind(this)
     }
 handleCreatePet(pet) {
   fetch('http:localhost:3000/pets', {
@@ -27,23 +35,104 @@ handleCreatePet(pet) {
       this.updateArray(jData, 'lostPets')
       this.handleView('lost')
   })
-    .catch ( err => console.log('this is and error', err))
+    .catch ( err => console.log('this is an error', err))
 }
 
+updateArray(pet,array){
+  this.setState( prevState => ({
+    [array]:[...prevState[array],pet]
+  }))
+}
+handleCheck(pet, arrayIndex, currentArray){
+  pet.found = !pet.found
+  fetch('http//localhost:3000/pets/' + pet.id, {
+    body: JSON.stringify(pet),
+    method: 'PUT' ,
+    headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+    }
+  })
+  .then ( updatedPet => updatedPet.json())
+  .then(jData => {
+    this.removeFromArray(currentArray, arrayIndex)
+    if(currentArray === 'lostPets') {
+      this.updateArray(jData, 'foundPets')
+    }
+  })
+  .catch (err => console.log('this is an error', err))
+}
+
+removeFromArray(array, arrayIndex) {
+  this.setState(prevState => {
+    prevState[array].splice(arrayIndex, 1)
+    return {
+      [array]: prevState[array]
+    }
+  })
+}
+
+fetchPets() {
+  fetch('http://localhost:3000/pets')
+  .then (data => data.json())
+  .then (jdata => {
+    this.sortPets(jdata)
+  })
+}
+handleView(view) {
+    this.setState({
+      currentView: view
+    })
+  }
 
 
+sortPets(pets){
+  let foundPets = []
+  let lostPets = []
+  pets.forEach (pet => {
+    if(pet.found) {
+      foundPets.push(pet)
+    } else {
+      lostPets.push(pet)
+    }
+  })
+  this.setPets(foundPets, lostPets)
+}
 
+setPets(found,lost){
+  this.setState({
+    foundPets : found,
+    lostPets: lost
+  })
+}
 
-
-
-
+componentDidMount(){
+  this.fetchPets()
+}
 
 
 
   render (){
     return (
-
-    )
+      <div className="Paws-container">
+      <Navigation
+        currentView={this.state.currentView}
+        handleView={this.handleView}
+        lostCount={this.state.lostPets.length}
+        foundCount={this.state.foundPets.length}
+      />
+      <Form
+        handleCreatePet={this.handleCreatePet}
+      />
+      <PetList
+        currentView={this.state.currentView}
+        handleView={this.handleView}
+        lostPets={this.state.lostPets}
+        foundPets={this.state.foundPets}
+        handleCheck={this.handleCheck}
+        />
+        </div>
+    );
   }
 }
 
