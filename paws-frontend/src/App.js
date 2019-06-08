@@ -1,26 +1,50 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import Navigation from './components/Navigation';
+import Form from './components/Form';
+import PetList from './components/PetList';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+    constructor(props){
+      super(props)
+      this.state = {
+        currentView: 'lost',
+        foundPets: [],
+        lostPets: []
+      }
+      this.handleCreatePet = this.handleCreatePet.bind(this)
+    }
+handleCreatePet(pet) {
+  fetch('http:localhost:3000/pets', {
+    body:JSON.stringify(pet),
+    method:'POST',
+    headers: {
+        'Accept': 'application/json, text/plain, */*',
+        'Content-Type': 'application/json'
+    }
+  })
+      .then( createdPet => createdPet.json())
+      .then( jData => {
+      this.updateArray(jData, 'lostPets')
+      this.handleView('lost')
+  })
+    .catch ( err => console.log('this is and error', err))
+}
+
+
+
+
+
+
+
+
+
+
+
+  render (){
+    return (
+
+    )
+  }
 }
 
 export default App;
