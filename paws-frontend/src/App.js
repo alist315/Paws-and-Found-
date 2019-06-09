@@ -22,7 +22,8 @@ class App extends Component {
   }
 
   handleCreatePet(pet) {
-    fetch('http:localhost:3000/pets', {
+    console.log(pet);
+    fetch('https://paws-and-found.herokuapp.com/pets', {
       body:JSON.stringify(pet),
       method:'POST',
       headers: {
@@ -47,7 +48,7 @@ class App extends Component {
 
   handleCheck(pet, arrayIndex, currentArray){
     pet.found = !pet.found
-    fetch('http//localhost:3000/pets/' + pet.id, {
+    fetch('https://paws-and-found.herokuapp.com/pets' + pet.id, {
       body: JSON.stringify(pet),
       method: 'PUT' ,
       headers: {
@@ -78,7 +79,7 @@ class App extends Component {
   }
 
   fetchPets() {
-    fetch('http://localhost:3000/pets')
+    fetch('https://paws-and-found.herokuapp.com/pets')
     .then (data => data.json())
     .then (jData => {
       console.log('this is jData', jData)
@@ -95,8 +96,8 @@ class App extends Component {
   sortPets(pets){
     let foundPets = []
     let lostPets = []
-    pets.forEach (pet => {
-      if(pet.found) {
+    pets.forEach(pet => {
+      if(pet.found === 't') {
         foundPets.push(pet)
       } else {
         lostPets.push(pet)
