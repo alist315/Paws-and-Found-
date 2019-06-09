@@ -70,7 +70,7 @@ class Form extends Component {
           />
           <input
             type='text'
-            value={this.state.last_known_location} id="location"
+            value={this.state.last_known_location} id="last_known_location"
             onChange={this.handleChange}
             placeholder="last known location"
           />

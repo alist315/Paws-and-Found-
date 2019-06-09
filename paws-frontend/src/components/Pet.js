@@ -5,7 +5,12 @@ class Pet extends Component {
     return (
       <div className="pet">
         <div className="pet-info">
-          {this.props.pet.name}
+          <h3>{this.props.pet.name}</h3>
+          <h4>{this.props.pet.species}</h4>
+          <h4>{this.props.pet.breed}</h4>
+          <img src={this.props.pet.photo} />
+          <h4>{this.props.pet.last_known_location}</h4>
+          <h4>{this.props.pet.description}</h4>
         </div>
       </div>
     )
