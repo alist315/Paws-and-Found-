@@ -6,7 +6,7 @@ class Pet extends Component {
       <div className="pet">
         <div className="pet-info">
           this is Pet component from inside the PetList component
-          
+          {this.props.pet.name}
         </div>
       </div>
     )
