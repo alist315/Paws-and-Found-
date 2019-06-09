@@ -30,7 +30,7 @@ class Form extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.handleCreateTask(this.state)
+    this.props.handleCreatePet(this.state)
     this.clearForm()
   }
 
