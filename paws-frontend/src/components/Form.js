@@ -74,7 +74,7 @@ class Form extends Component {
             onChange={this.handleChange}
             placeholder="last known location"
           />
-          <input
+          <textarea
             type='text'
             value={this.state.description} id="description"
             onChange={this.handleChange}
