@@ -19,12 +19,7 @@ class Form extends Component {
 
   handleChange = (e) => {
     this.setState({
-      name: e.target.value,
-      species: e.target.value,
-      breed: e.target.value,
-      photo: e.target.value,
-      last_known_location: e.target.value,
-      description: e.target.value
+    [e.target.id]: e.target.value
     })
   }
 
@@ -51,37 +46,37 @@ class Form extends Component {
         <form onSubmit={this.handleSubmit}>
           <input
             type='text'
-            value={this.state.name}
+            value={this.state.name} id="name"
             onChange={this.handleChange}
             placeholder="animal name"
           />
           <input
             type='text'
-            value={this.state.species}
+            value={this.state.species} id="species"
             onChange={this.handleChange}
             placeholder="animal species"
           />
           <input
             type='text'
-            value={this.state.breed}
+            value={this.state.breed} id="breed"
             onChange={this.handleChange}
             placeholder="animal breed"
           />
           <input
             type='text'
-            value={this.state.photo}
+            value={this.state.photo} id="photo"
             onChange={this.handleChange}
             placeholder="animal photo"
           />
           <input
             type='text'
-            value={this.state.last_known_location}
+            value={this.state.last_known_location} id="location"
             onChange={this.handleChange}
             placeholder="last known location"
           />
           <input
             type='text'
-            value={this.state.description}
+            value={this.state.description} id="description"
             onChange={this.handleChange}
             placeholder="description"
           />
