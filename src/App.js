@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import Navigation from './components/Navigation';
 import Form from './components/Form';
 import PetList from './components/PetList';
-
+import About from './components/About';
 class App extends Component {
   constructor(props){
     super(props)
     this.state = {
       currentView: 'lost',
       foundPets: [],
-      lostPets: []
+      lostPets: [],
     }
     this.handleCreatePet = this.handleCreatePet.bind(this)
     this.handleView = this.handleView.bind(this)
@@ -19,6 +19,7 @@ class App extends Component {
     this.updateArray = this.updateArray.bind(this)
     this.handleCheck = this.handleCheck.bind(this)
     this.removeFromArray = this.removeFromArray.bind(this)
+    this.handleDelete = this.handleDelete.bind(this)
   }
 
   handleCreatePet(pet) {
@@ -48,7 +49,7 @@ class App extends Component {
 
   handleCheck(pet, arrayIndex, currentArray){
     pet.found = !pet.found
-    fetch('https://paws-and-found.herokuapp.com/pets' + pet.id, {
+    fetch('https://paws-and-found.herokuapp.com/pets/' + pet.id, {
       body: JSON.stringify(pet),
       method: 'PUT' ,
       headers: {
@@ -92,6 +93,15 @@ class App extends Component {
       currentView: view
     })
   }
+  handleDelete(petId, arrayIndex, currentArray) {
+      fetch(`https://paws-and-found.herokuapp.com/pets/${petId}`, {
+        method: 'DELETE'
+      })
+      .then(data => {
+        this.removeFromArray(currentArray, arrayIndex)
+      })
+      .catch(err => console.log(err))
+    }
 
   sortPets(pets){
     let foundPets = []
@@ -129,13 +139,15 @@ class App extends Component {
         <Form
           handleCreatePet={this.handleCreatePet}
         />
+        {this.state.currentView === 'about' ? <About/> :
         <PetList
           currentView={this.state.currentView}
           handleView={this.handleView}
           lostPets={this.state.lostPets}
           foundPets={this.state.foundPets}
           handleCheck={this.handleCheck}
-        />
+          handleDelete={this.handleDelete}
+        />}
       </div>
     );
   }

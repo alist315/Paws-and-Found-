@@ -6,7 +6,6 @@ class PetList extends Component {
   render() {
     return (
       <div className="pet-list">
-        this is the PetList component
         {this.props.currentView === 'lost' ?
           <div>
             {this.props.lostPets.map((pet, index) => {
@@ -17,6 +16,7 @@ class PetList extends Component {
                   pet={pet}
                   handleCheck={this.props.handleCheck}
                   currentArray='lostPets'
+                  handleDelete={this.props.handleDelete}
                 />
               )
             })}
@@ -29,6 +29,7 @@ class PetList extends Component {
                   arrayIndex={index}
                   pet={pet}
                   handleCheck={this.props.handleCheck}
+                  handleDelete={this.props.handleDelete}
                   currentArray='foundPets'
                 />
               )

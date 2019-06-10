@@ -7,7 +7,18 @@ class Navigation extends Component {
       <div className="navigation">
         <div className="title">
           <h1>
-            {this.props.currentView === 'lost' ? 'LOST PETS' : 'FOUND PETS'}
+          {(() => {
+          switch(this.props.currentView) {
+            case 'about':
+              return 'About'
+            case 'lost':
+              return 'Lost Pets'
+            case 'found':
+              return 'Found Pets'
+            default:
+              return null
+          }
+        })()}
           </h1>
         </div>
           <a onClick={() => {this.props.handleView('lost')}}>
@@ -17,6 +28,8 @@ class Navigation extends Component {
           <a onClick={() => {this.props.handleView('found')}}>
             {this.props.foundCount} FOUND
           </a>
+          <a onClick={() =>{this.props.handleView('about')}}>
+          ABOUT </a>
       </div>
       </header>
     )
