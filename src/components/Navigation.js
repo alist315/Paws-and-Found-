@@ -6,7 +6,8 @@ class Navigation extends Component {
       <header>
       <div className="navigation">
         <div className="title">
-          <h1>
+        <h1>PAWS AND FOUND</h1>
+          <h2>
           {(() => {
           switch(this.props.currentView) {
             case 'about':
@@ -19,7 +20,7 @@ class Navigation extends Component {
               return null
           }
         })()}
-          </h1>
+          </h2>
         </div>
           <a onClick={() => {this.props.handleView('lost')}}>
             {this.props.lostCount} LOST

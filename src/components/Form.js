@@ -80,6 +80,7 @@ class Form extends Component {
             onChange={this.handleChange}
             placeholder="description"
           />
+          <br/>
           <button
             type="submit"
             className="submit-button">

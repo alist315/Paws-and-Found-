@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  font-family: 'Roboto Slab', serif;
+  background-image: url('https://media.istockphoto.com/vectors/animal-paw-seamless-pattern-vector-id1005886450?k=6&m=1005886450&s=612x612&w=0&h=IwqN2WOzXrNC5YXeQ0T_YuF0ERm9x5ia0sjshBPVhlQ=');
 }
 
 code {
@@ -12,5 +15,84 @@ code {
     monospace;
 }
 img{
-  width: 100px;
+  max-width: 80%;
+  max-height: 100%;
+}
+header{
+  padding-top: 20px;
+  background-color: black;
+  color: White;
+  width: 100%;
+
+}
+textarea{
+  width : 350px;
+  height: 150px;
+  resize: none;
+}
+.pet-stuff{
+display: flex;
+width: 100%;
+flex-wrap: wrap;
+
+}
+form{
+  width: 800px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  box-sizing: border-box;
+}
+input{
+  border-radius: 5px;
+  width: 200px;
+  height: 30px;
+  padding-right: 5px;
+}
+.submit-button{
+  border-radius: 5px;
+  width: 30px;
+  background-color: #6F6F6F;
+  color: gold;
+  border: 1px solid gold;
+  box-shadow: 3px ;
+}
+textarea{
+  border-radius: 5px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border-style: inset;
+  border-width: 2px;
+}
+.pet{
+  width: 25%;
+  margin-bottom: 100px;
+
+}
+h1, a{
+  color: gold;
+}
+h2, h3, h4{
+  color: gold;
+}
+.pet-info{
+  border-radius: 5%;
+  box-shadow: 3px 3px 10px 0px rgba(0,0,0,0.35);
+  border: 3px solid ;
+  margin: 1%;
+  width:365px;
+  height: 100%;
+  background-color: #6F6F6F;
+  color: gold;
+  display: inline-block;
+  position: relative;
+}
+
+a{
+  margin-left: 20px;
+}
+footer{
+  background-color: black;
+  color: Gold;
 }

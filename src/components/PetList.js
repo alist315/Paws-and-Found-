@@ -7,7 +7,7 @@ class PetList extends Component {
     return (
       <div className="pet-list">
         {this.props.currentView === 'lost' ?
-          <div>
+          <div className="pet-stuff">
             {this.props.lostPets.map((pet, index) => {
               return (
                 <Pet
@@ -21,7 +21,7 @@ class PetList extends Component {
               )
             })}
           </div> :
-          <div>
+          <div className="pet-stuff">
             {this.props.foundPets.map((pet, index) => {
               return (
                 <Pet
