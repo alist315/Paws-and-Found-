@@ -49,6 +49,7 @@ class App extends Component {
 
   handleCheck(pet, arrayIndex, currentArray){
     pet.found = !pet.found
+    console.log(pet, arrayIndex, currentArray);
     fetch('https://paws-and-found.herokuapp.com/pets/' + pet.id, {
       body: JSON.stringify(pet),
       method: 'PUT' ,
@@ -107,7 +108,7 @@ class App extends Component {
     let foundPets = []
     let lostPets = []
     pets.forEach(pet => {
-      if(pet.found === 't') {
+      if(pet.found === true) {
         foundPets.push(pet)
       } else {
         lostPets.push(pet)
@@ -129,17 +130,18 @@ class App extends Component {
 
   render (){
     return (
-      <div className="Paws-container">
+      <div className="container">
         <Navigation
           currentView={this.state.currentView}
           handleView={this.handleView}
           lostCount={this.state.lostPets.length}
           foundCount={this.state.foundPets.length}
         />
+        {this.state.currentView === 'about' ? <About/> :
+        <div>
         <Form
           handleCreatePet={this.handleCreatePet}
         />
-        {this.state.currentView === 'about' ? <About/> :
         <PetList
           currentView={this.state.currentView}
           handleView={this.handleView}
@@ -147,8 +149,13 @@ class App extends Component {
           foundPets={this.state.foundPets}
           handleCheck={this.handleCheck}
           handleDelete={this.handleDelete}
-        />}
-      </div>
+        /></div>}
+        <footer>
+        Copyright 2019
+        <br/>
+        Paws and Found Inc
+        </footer>
+        </div>
     );
   }
 }
