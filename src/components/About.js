@@ -12,7 +12,7 @@ class About extends Component {
         <div className="aaron">
         <h4>Aaron R</h4>
         <img src='https://res.cloudinary.com/drq0wwca0/image/upload/v1560270954/me_d2fx1f.jpg' alt='aaron'/>
-      <p> My name is Aaron Reinheimer I am A 28 year old animal lover. I love my dogs like my own children, and if I lost them I don't know what I would do. I grew up in New York City growing up my dogs were my best friends, I learned early on how important they are to family. As an aspiring developer me and my classmate Jake came up with this idea so we could help people and help their pets! I love my work as a developer just as  much as I love animals!!</p>
+      <p> My name is Aaron Reinheimer I am software Engineer and  animal lover located in upstate NY. I learned early on how important pets are to family. As web developers me and Jake came up with this idea so we could use our skills to help people and help their pets. I love my work as a developer just as much as I love animals!!</p>
         </div>
         <div className="jake">
         <h4>Jake R</h4>
